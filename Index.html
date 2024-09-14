@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Chart Topping Hits (2000-2024)</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Baloo 2', sans-serif;
+            background-color: #38B6FF; /* Background color */
+            color: black;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        #yellow-box {
+            width: 200px;
+            height: 200px;
+            background-color: #FED405; /* Yellow color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            color: black;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            border: 5px solid black; /* Black edging */
+            transition: transform 0.1s ease-in-out;
+        }
+
+        #question-answer {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* Keyframes for the bounce animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Class to trigger the bounce animation */
+        .animate-bounce {
+            animation: bounce 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="yellow-box">UK CHART TOPPERS</div>
+
+    <div id="question-answer"></div>
+
+    <script>
+        const yellowBox = document.getElementById("yellow-box");
+        const questionAnswerDiv = document.getElementById("question-answer");
+
+        // Array of UK chart-topping hits from 2000-2024
+        const chartToppersQuestions = [
+            { question: "Which song by Adele topped the UK charts in 2015 and was known for its emotional lyrics?", answer: "Hello" },
+            { question: "What was the title of Ed Sheeran's 2017 hit that became a chart-topping single in the UK?", answer: "Shape of You" },
+            { question: "Which song by Calvin Harris featuring Dua Lipa topped the UK charts in 2018?", answer: "One Kiss" },
+            { question: "What 2020 hit by The Weeknd topped the UK charts with its catchy beat and memorable chorus?", answer: "Blinding Lights" },
+            { question: "Which song by Sam Smith topped the UK charts in 2014 and is known for its soulful vocals?", answer: "Stay With Me" },
+            { question: "What song by Lady Gaga and Bradley Cooper topped the UK charts in 2018 from the movie 'A Star is Born'?", answer: "Shallow" },
+            { question: "Which 2016 hit by Justin Bieber spent several weeks at the top of the UK charts?", answer: "Love Yourself" },
+            { question: "What 2021 song by Olivia Rodrigo, known for its emotional lyrics, topped the UK charts?", answer: "drivers license" },
+            { question: "Which song by Ariana Grande topped the UK charts in 2019 and was known for its upbeat tempo?", answer: "7 rings" },
+            { question: "What 2009 hit by Lady Gaga was a major chart-topper and known for its unique music video?", answer: "Poker Face" },
+            { question: "Which song by Maroon 5 featuring Cardi B topped the UK charts in 2018?", answer: "Girls Like You" },
+            { question: "What 2012 hit by Gotye featuring Kimbra became a global chart-topper and was particularly popular in the UK?", answer: "Somebody That I Used to Know" },
+            { question: "Which song by Dua Lipa became a chart-topper in 2020 with its infectious beat?", answer: "Don't Start Now" },
+            { question: "What 2004 hit by Usher featuring Lil Jon and Ludacris topped the UK charts?", answer: "Yeah!" },
+            { question: "Which song by Katy Perry topped the UK charts in 2008 with its empowering message?", answer: "I Kissed a Girl" },
+            { question: "What song by Pink, known for its rock edge, topped the UK charts in 2008?", answer: "So What" },
+            { question: "Which 2019 hit by Billie Eilish topped the UK charts with its unique style?", answer: "Bad Guy" },
+            { question: "What song by George Ezra became a chart-topping hit in 2018 with its catchy chorus?", answer: "Shotgun" },
+            { question: "Which 2013 hit by Daft Punk featuring Pharrell Williams was known for its funky beat?", answer: "Get Lucky" },
+            { question: "What song by Clean Bandit featuring Sean Paul and Anne-Marie topped the UK charts in 2018?", answer: "Rockabye" },
+            { question: "Which song by Taylor Swift topped the UK charts in 2014 with its pop influence?", answer: "Shake It Off" },
+            { question: "What 2007 hit by Rihanna featuring Jay-Z topped the UK charts?", answer: "Umbrella" },
+            { question: "Which song by Sia topped the UK charts in 2014 with its powerful vocals?", answer: "Chandelier" },
+            { question: "What song by Ed Sheeran, known for its heartfelt lyrics, topped the UK charts in 2016?", answer: "Castle on the Hill" },
+            { question: "Which song by Justin Timberlake topped the UK charts in 2013 with its catchy melody?", answer: "Mirrors" },
+            { question: "What 2010 hit by Taio Cruz topped the UK charts with its energetic beat?", answer: "Dynamite" },
+            { question: "Which song by Beyoncé topped the UK charts in 2013 and was known for its powerful message?", answer: "Drunk in Love" },
+            { question: "What 2015 song by Major Lazer featuring MØ topped the UK charts?", answer: "Lean On" },
+            { question: "Which 2022 hit by Harry Styles topped the UK charts with its upbeat vibe?", answer: "As It Was" },
+            { question: "What song by Shawn Mendes topped the UK charts in 2016 with its heartfelt lyrics?", answer: "Stitches" },
+            { question: "Which song by Cardi B featuring Bad Bunny and J Balvin topped the UK charts in 2018?", answer: "I Like It" },
+            { question: "What 2005 hit by Gorillaz topped the UK charts with its unique style?", answer: "Feel Good Inc." },
+            { question: "Which 2020 song by Cardi B and Megan Thee Stallion became a chart-topper with its provocative lyrics?", answer: "WAP" },
+            { question: "What song by Adele, known for its emotional depth, topped the UK charts in 2021?", answer: "Easy on Me" },
+            { question: "Which 2008 song by Leona Lewis topped the UK charts and became a massive hit?", answer: "Bleeding Love" },
+            { question: "What 2011 hit by LMFAO topped the UK charts with its danceable beat?", answer: "Party Rock Anthem" },
+            { question: "Which song by Drake topped the UK charts in 2018 with its catchy rhythm?", answer: "God's Plan" },
+            { question: "What song by Katy Perry featuring Snoop Dogg topped the UK charts in 2010?", answer: "California Gurls" },
+            { question: "Which 2019 hit by Lil Nas X topped the UK charts with its genre-blending style?", answer: "Old Town Road" },
+            { question: "What song by The Chainsmokers and Halsey topped the UK charts in 2016?", answer: "Closer" },
+            { question: "Which song by Sam Smith became a chart-topper in 2015 with its powerful vocals?", answer: "Lay Me Down" },
+            { question: "What 2003 hit by 50 Cent topped the UK charts with its catchy hook?", answer: "In Da Club" },
+            { question: "Which 2023 hit by Taylor Swift topped the UK charts with its catchy melody?", answer: "Anti-Hero" },
+            { question: "What song by Mark Ronson featuring Bruno Mars topped the UK charts in 2014?", answer: "Uptown Funk" },
+            { question: "Which song by BTS became a chart-topping hit in the UK with its global appeal?", answer: "Dynamite" },
+            { question: "What 2018 song by Marshmello and Anne-Marie topped the UK charts?", answer: "FRIENDS" },
+            { question: "Which 2021 hit by Ed Sheeran topped the UK charts with its heartfelt lyrics?", answer: "Bad Habits" },
+            { question: "What song by Billie Eilish topped the UK charts in 2019 with its distinct style?", answer: "When the Party's Over" },
+            { question: "Which 2022 song by Lizzo topped the UK charts with its empowering message?", answer: "About Damn Time" }
+        ];
+
+        let shuffledQuestions = [];
+        let questionIndex = 0;
+
+        // Shuffle the questions array
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Initialize questions
+        function initializeQuestions() {
+            shuffledQuestions = shuffleArray([...chartToppersQuestions]);
+            questionIndex = 0;
+            displayQuestion();
+        }
+
+        // Function to display the current question
+        function displayQuestion() {
+            if (shuffledQuestions.length === 0) {
+                questionAnswerDiv.innerHTML = "<strong>No more questions!</strong>";
+                return;
+            }
+            const currentQA = shuffledQuestions[questionIndex];
+            questionAnswerDiv.innerHTML = `<strong>Question:</strong> ${currentQA.question}<br><strong>Answer:</strong> ${currentQA.answer}`;
+        }
+
+        // Bounce animation on click
+        yellowBox.addEventListener("click", () => {
+            yellowBox.classList.add("animate-bounce");
+            setTimeout(() => {
+                yellowBox.classList.remove("animate-bounce");
+            }, 300);
+            questionIndex = (questionIndex + 1) % shuffledQuestions.length;
+            displayQuestion();
+        });
+
+        // Initialize the quiz
+        initializeQuestions();
+    </script>
+
+</body>
+</html>
